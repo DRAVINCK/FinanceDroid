@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,6 +30,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import com.example.financedroid.ui.theme.FinanceDroidTheme
@@ -99,7 +102,7 @@ fun Welcome(){
         )
     }
 }
-
+@Preview(showBackground = true)
 @Composable
 fun Transactions(viewModel: MyviewModel = viewModel()){
     val uiState by viewModel.uiState.collectAsState() // transforma o flow em um estado do jetpack compose
@@ -129,22 +132,28 @@ fun Transactions(viewModel: MyviewModel = viewModel()){
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                horizontalArrangement = Arrangement.Center
+                horizontalArrangement = Arrangement.End
             ){
-                Button(
-                    onClick = { viewModel.add("Nova Transação") },
-                )
-                {
+
+                IconButton(
+                    modifier = Modifier.size(70.dp),
+                    onClick = { viewModel.add("Nova Transação") }) {
                     Icon(
-                        imageVector = Icons.Filled.Add,
-                        contentDescription = "Botão Redondo",
-                        tint = Color.White
+                        imageVector = Icons.Filled.AddCircle,
+                        contentDescription = "Botão",
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(60.dp)
+
                     )
+
                 }
+
             }
 
     }
 }
+
+// CARD DAS TRANSACOES
 @Composable
 private fun Transaciton(transaction: String){
 
