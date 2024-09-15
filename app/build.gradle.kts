@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.financedroid"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.financedroid"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 25
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -50,9 +50,8 @@ android {
 }
 
 dependencies {
-    val lifecycle_version = "2.8.4"
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
-
+    implementation("androidx.compose.material:material-icons-core")
+    implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -61,6 +60,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.material)
+    implementation(libs.androidx.compose.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

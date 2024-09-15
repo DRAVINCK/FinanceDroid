@@ -72,10 +72,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FinanceDroidTheme {
-                Column {
-                    Welcome()
-                    Transactions()
-                }
+                OverViewScreen()
             }
         }
     }
