@@ -28,4 +28,5 @@ object DummyRepository {
     fun findTransaction(uuid: String): Transaction {
         return transactions.firstOrNull{ it.uuid == uuid} ?: Transaction()
     }
+
 }

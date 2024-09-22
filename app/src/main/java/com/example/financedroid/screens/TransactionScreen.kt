@@ -1,6 +1,5 @@
 package com.example.financedroid.screens
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -17,14 +16,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.financedroid.OverviewViewModel
-import com.example.financedroid.TransactionCard
-import com.example.financedroid.ui.theme.formatDate
+import com.example.financedroid.Utils.TransactionCard
+import com.example.financedroid.Utils.formatDate
 
 
 
@@ -75,5 +73,14 @@ fun TransactionScreen(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun TransactionScreenPreview() {
+    TransactionScreen(
+        it = PaddingValues(),
+        uiState = OverviewViewModel.UiState()
+    )
 }
 

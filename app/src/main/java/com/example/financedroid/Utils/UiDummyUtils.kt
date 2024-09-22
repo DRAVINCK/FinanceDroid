@@ -1,4 +1,4 @@
-package com.example.financedroid.ui.theme
+package com.example.financedroid.Utils
 
 
 import androidx.compose.material.icons.Icons
@@ -7,7 +7,8 @@ import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.ShoppingCart
-import com.example.financedroid.R
+import com.example.financedroid.data.InvestmentTip
+import com.example.financedroid.data.InvestmentTips
 import com.example.financedroid.data.Transaction
 import java.math.BigDecimal
 import java.text.NumberFormat
@@ -38,7 +39,14 @@ val categories = listOf(
     "Utilitários" to Icons.Default.Build,
 )
 
+
+
 fun randomTransaction() = Transaction(
     category = categories.random().first,
     value = BigDecimal.valueOf( Random.nextDouble() / Random.nextDouble())
 )
+
+fun RandomInvestmentTip(): InvestmentTip {
+    return InvestmentTips.tips.random()
+}
+

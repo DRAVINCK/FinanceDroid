@@ -1,4 +1,4 @@
-package com.example.financedroid
+package com.example.financedroid.Utils
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,8 +21,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.wear.compose.material.ContentAlpha
-import com.example.financedroid.ui.theme.categories
-import com.example.financedroid.ui.theme.toCurrency
 
 @Composable
 fun TransactionCard(

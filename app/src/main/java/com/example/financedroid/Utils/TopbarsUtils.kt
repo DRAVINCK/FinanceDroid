@@ -3,6 +3,7 @@ package com.example.financedroid.Utils
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -17,37 +18,37 @@ import androidx.compose.ui.unit.dp
 
 
 
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    fun TopbarInicial() {
-        TopAppBar(
-            modifier = Modifier.padding(top = 32.dp, bottom = 32.dp),
-            colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.background),
-            title = {
-                Text(
-                    text = "Bem vindo, \nLucas Teixeira",
-                    style = MaterialTheme.typography.headlineMedium
-                )
-            }
-        )
-    }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopbarInicial() {
+    TopAppBar(
+        modifier = Modifier.padding(top = 32.dp, bottom = 32.dp),
+        colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.background),
+        title = {
+            Text(
+                text = "Bem vindo, \nLucas Teixeira",
+                style = MaterialTheme.typography.headlineMedium
+            )
+        }
+    )
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Topbar2() {
+fun TopbarInfoValues() {
     TopAppBar(
         modifier = Modifier.padding(bottom = 32.dp),
         colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.background),
         title = {
             Text(
-                text = "Tela 2",
+                text = "Totais",
                 style = MaterialTheme.typography.headlineMedium
             )
         },
         actions = {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
-                    imageVector = Icons.Filled.Clear,
+                    imageVector = Icons.Filled.Home,
                     contentDescription = "Limpar Transações",
                     tint = MaterialTheme.colorScheme.primary
                 )
@@ -58,20 +59,20 @@ fun Topbar2() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Topbar3() {
+fun TopbarAItip() {
     TopAppBar(
         modifier = Modifier.padding( bottom = 32.dp),
         colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.background),
         title = {
             Text(
-                text = "Tela 3",
+                text = "Dicas de financeiras",
                 style = MaterialTheme.typography.headlineMedium
             )
         },
         actions = {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
-                    imageVector = Icons.Filled.Clear,
+                    imageVector = Icons.Filled.Home,
                     contentDescription = "Limpar Transações",
                     tint = MaterialTheme.colorScheme.primary
                 )
@@ -84,5 +85,5 @@ fun Topbar3() {
 @Preview
 @Composable
 fun TopbarInicialPreview() {
-    Topbar3()
+    TopbarAItip()
 }
