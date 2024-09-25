@@ -30,7 +30,7 @@ import com.example.financedroid.Utils.formatDate
 fun TransactionScreen(
     it: PaddingValues,
     uiState: OverviewViewModel.UiState,
-    viewModel: OverviewViewModel = viewModel()
+    viewModel: OverviewViewModel
 ) {
 
     Column(modifier = Modifier.padding(it)) {
@@ -67,7 +67,8 @@ fun TransactionScreen(
                     uui = transaction.uuid,
                     category = transaction.category,
                     value = transaction.value,
-                    date = transaction.date.formatDate()
+                    date = transaction.date.formatDate(),
+                    deletar = { viewModel.deleteTransaction(transaction.uuid) }
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }
@@ -80,7 +81,8 @@ fun TransactionScreen(
 fun TransactionScreenPreview() {
     TransactionScreen(
         it = PaddingValues(),
-        uiState = OverviewViewModel.UiState()
+        uiState = OverviewViewModel.UiState(),
+        viewModel = viewModel()
     )
 }
 

@@ -37,8 +37,9 @@ fun OverViewScreen(viewModel: OverviewViewModel = viewModel()) {
         topBar = {
             when (selectedItem) {
                 0 -> TopbarInicial()
-                1 -> TopbarInfoValues()
-                2 -> TopbarAItip()
+                1 -> TopbarInfoValues(returnTransaction = { selectedItem = 0})
+                2 -> TopbarAItip(returnTransaction = { selectedItem = 0})
+
                 else -> TopbarInicial()
             }
         },
@@ -78,7 +79,7 @@ fun OverViewScreen(viewModel: OverviewViewModel = viewModel()) {
         }
     ) {
         when (selectedItem) {
-            0 -> TransactionScreen(it, uiState)
+            0 -> TransactionScreen(it, uiState,viewModel)
             1 -> TotalInfoScreen(it, uiState)
             2 -> AdviceScreen(it, uiState)
         }

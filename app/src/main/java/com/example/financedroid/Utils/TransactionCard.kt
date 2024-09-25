@@ -18,17 +18,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import java.math.BigDecimal
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.wear.compose.material.ContentAlpha
+import com.example.financedroid.OverviewViewModel
 
 @Composable
 fun TransactionCard(
     uui: String,
     category: String,
     value: BigDecimal,
-    date: String
-){
+    date: String,
+    deletar: () -> Unit,
+
+
+    ){
     Card(
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(3.dp),
@@ -38,12 +43,12 @@ fun TransactionCard(
 
         )
     ) {
-        TransactionInfoRow(category,date, value)
+        TransactionInfoRow(deletar, uui, category,date, value)
     }
 }
 
 @Composable
-private fun TransactionInfoRow(category: String, date: String, value: BigDecimal) {
+private fun TransactionInfoRow( deletar: () -> Unit, uui: String, category: String, date: String, value: BigDecimal) {
     Column(Modifier.padding(16.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -67,8 +72,10 @@ private fun TransactionInfoRow(category: String, date: String, value: BigDecimal
             )
             Spacer(modifier = Modifier.padding(16.dp))
 
+            IconButton(onClick = {deletar }) {
+                Icon(imageVector = Icons.Filled.Delete, contentDescription = "Food", )
+            }
 
-            Icon(imageVector = Icons.Filled.Delete, contentDescription = "Food")
 
         }
     }
@@ -79,8 +86,9 @@ private fun TransactionInfoRow(category: String, date: String, value: BigDecimal
 fun TransactionCardPreview() {
     TransactionCard(
         uui = "",
-        date = "set. 15",
         category = "Food",
-        value = BigDecimal.valueOf(10.00)
+        value = BigDecimal.valueOf(10.00),
+        date = "set. 15",
+        deletar = {}
     )
 }
