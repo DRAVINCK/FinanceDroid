@@ -2,7 +2,7 @@
 
 FinanceDroid é um aplicativo Android de código aberto que ajuda você a gerenciar suas finanças pessoais. 
 
-#### Com ele, você pode:
+## Com ele, você pode:
 * Controlar suas transações: adicione, edite e exclua transações facilmente.
 * Categorizar suas transações: defina categorias personalizadas para organizar seus gastos.
 * Visualizar seus totais: veja o total de suas receitas e despesas por categoria.
@@ -10,7 +10,7 @@ FinanceDroid é um aplicativo Android de código aberto que ajuda você a gerenc
 * Definir metas financeiras: acompanhe seu progresso em direção aos seus objetivos.
 
 
-#### Funcionalidades principais
+## Funcionalidades principais
 * Tela de transações com lista de transações e categorias.
 * Tela de totais com gráficos e resumos.
 * Tela de dicas com dicas de investimento personalizadas.
@@ -18,7 +18,7 @@ FinanceDroid é um aplicativo Android de código aberto que ajuda você a gerenc
 * Integração com APIs de bancos (em desenvolvimento).
 
 
-#### Tecnologias utilizadas
+## Tecnologias utilizadas
 * Linguagem: Kotlin
 * Framework de UI: Jetpack Compose
 * Arquitetura: ViewModel
@@ -26,7 +26,7 @@ FinanceDroid é um aplicativo Android de código aberto que ajuda você a gerenc
 * Comunicação com API: Retrofit
 
 
-### Próximos passos
+## Próximos passos
 * Implementar persistência de dados com Room.
 * Integrar com APIs de bancos para importar transações automaticamente.
 * Adicionar mais funcionalidades, como:
@@ -35,5 +35,5 @@ FinanceDroid é um aplicativo Android de código aberto que ajuda você a gerenc
 * Melhorar a interface do usuário e a experiência do usuário.
 
 
-Licença
+### Licença
 Este projeto é licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
