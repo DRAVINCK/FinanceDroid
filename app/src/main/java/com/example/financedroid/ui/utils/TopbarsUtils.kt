@@ -1,4 +1,4 @@
-package com.example.financedroid.Utils
+package com.example.financedroid.ui.utils
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons

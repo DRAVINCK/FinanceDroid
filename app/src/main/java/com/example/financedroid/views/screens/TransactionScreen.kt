@@ -1,4 +1,4 @@
-package com.example.financedroid.screens
+package com.example.financedroid.views.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,14 +20,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.financedroid.OverviewViewModel
-import com.example.financedroid.Utils.TransactionCard
-import com.example.financedroid.Utils.formatDate
+import androidx.navigation.NavHostController
+import com.example.financedroid.ui.viewmodels.OverviewViewModel
+import com.example.financedroid.ui.utils.TransactionCard
+import com.example.financedroid.ui.utils.formatDate
 
 
 
 @Composable
 fun TransactionScreen(
+
     it: PaddingValues,
     uiState: OverviewViewModel.UiState,
     viewModel: OverviewViewModel

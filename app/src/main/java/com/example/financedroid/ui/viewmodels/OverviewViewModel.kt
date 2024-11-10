@@ -1,12 +1,10 @@
-package com.example.financedroid
+package com.example.financedroid.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.financedroid.data.DummyRepository
-import com.example.financedroid.data.Transaction
-import com.example.financedroid.network.AiService
-import com.example.financedroid.network.OpenAIPrompt
-import com.example.financedroid.network.RetrofitModule
+import com.example.financedroid.data.repositories.DummyRepository
+import com.example.financedroid.data.models.Transaction
+
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,32 +14,13 @@ import java.math.BigDecimal
 
 
 class OverviewViewModel(
-    private val repository: DummyRepository = DummyRepository,
-    private val aiService: AiService = RetrofitModule.provideAiService(),
-    ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val repository: DummyRepository = DummyRepository
 ) : ViewModel() {
 
     private val filter = MutableStateFlow<String?>(null)
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState
 
-
-    init {
-        val prompt = "Give me a small personal finance advice in PT-BR"
-        viewModelScope.launch(ioDispatcher) {
-            //Requisicao para servidor
-            val response = aiService.completions(OpenAIPrompt(prompt))
-
-            //se tiver sucesso
-            if (response.isSuccessful) {
-                // pega o dado da resposta
-                response.body()?.choices?.first()?.text?.let { advice ->
-                    // atualiza a UI
-                    _uiState.value = _uiState.value.copy(advice = advice.trim())
-                }
-            }
-        }
-    }
 
     //funçao para add uma nova transação
     fun addTransaction(transaction: Transaction) {

@@ -1,4 +1,4 @@
-package com.example.financedroid.Utils
+package com.example.financedroid.ui.utils
 
 
 import androidx.compose.material.icons.Icons
@@ -7,9 +7,9 @@ import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.ShoppingCart
-import com.example.financedroid.data.InvestmentTip
-import com.example.financedroid.data.InvestmentTips
-import com.example.financedroid.data.Transaction
+import com.example.financedroid.data.models.InvestmentTip
+import com.example.financedroid.data.models.InvestmentTips
+import com.example.financedroid.data.models.Transaction
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.text.SimpleDateFormat

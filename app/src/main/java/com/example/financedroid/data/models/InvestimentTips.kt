@@ -1,4 +1,4 @@
-package com.example.financedroid.data
+package com.example.financedroid.data.models
 
 object InvestmentTips {
     val tips = listOf(

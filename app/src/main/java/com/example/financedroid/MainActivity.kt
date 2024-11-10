@@ -5,7 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.financedroid.ui.theme.FinanceDroidTheme
-import com.example.financedroid.screens.OverViewScreen
+import com.example.financedroid.views.navegation.FinanceDroidNavHost
+import com.example.financedroid.views.screens.OverViewScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -14,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FinanceDroidTheme {
-                OverViewScreen()
+                FinanceDroidNavHost()
             }
         }
     }

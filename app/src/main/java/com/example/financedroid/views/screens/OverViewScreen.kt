@@ -1,4 +1,4 @@
-package com.example.financedroid.screens
+package com.example.financedroid.views.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
@@ -19,17 +19,22 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.financedroid.Utils.TopbarAItip
-import com.example.financedroid.Utils.TopbarInicial
-import com.example.financedroid.Utils.randomTransaction
+import com.example.financedroid.ui.utils.TopbarAItip
+import com.example.financedroid.ui.utils.TopbarInicial
+import com.example.financedroid.ui.utils.randomTransaction
 import androidx.compose.material3.Icon
-import com.example.financedroid.OverviewViewModel
-import com.example.financedroid.Utils.TopbarInfoValues
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.financedroid.ui.viewmodels.OverviewViewModel
+import com.example.financedroid.ui.utils.TopbarInfoValues
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun OverViewScreen(viewModel: OverviewViewModel = viewModel()) {
+fun OverViewScreen(
+    navController: NavHostController,
+    viewModel: OverviewViewModel = viewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var selectedItem by remember { mutableStateOf(0) }
 
@@ -90,6 +95,6 @@ fun OverViewScreen(viewModel: OverviewViewModel = viewModel()) {
 @Preview
 @Composable
 fun OverViewScreenPreview() {
-    OverViewScreen()
+    OverViewScreen(navController = rememberNavController())
 }
 

@@ -1,4 +1,6 @@
-package com.example.financedroid.data
+package com.example.financedroid.data.repositories
+
+import com.example.financedroid.data.models.Transaction
 
 object DummyRepository {
     private var _transactions = mutableListOf<Transaction>()
@@ -28,5 +30,7 @@ object DummyRepository {
     fun findTransaction(uuid: String): Transaction {
         return transactions.firstOrNull{ it.uuid == uuid} ?: Transaction()
     }
+
+
 
 }
