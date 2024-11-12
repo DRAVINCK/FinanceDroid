@@ -3,11 +3,12 @@ package com.example.financedroid.data.repositories
 import com.example.financedroid.data.models.Transaction
 
 object DummyRepository {
+
     private var _transactions = mutableListOf<Transaction>()
 
     val transactions get() = _transactions.toList()
 
-    fun add(transaction: Transaction) {
+    fun addTransaction(transaction: Transaction) {
         _transactions.add(transaction)
     }
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "31238850727",
+    "project_id": "financedroid",
+    "storage_bucket": "financedroid.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31238850727:android:ce971545ba3fba7f463382",
+        "android_client_info": {
+          "package_name": "com.example.financedroid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9oH-jC0arRIAsR1ShQNClwDaPY9oMzh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

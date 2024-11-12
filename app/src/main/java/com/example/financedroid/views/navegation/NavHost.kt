@@ -17,7 +17,7 @@ fun FinanceDroidNavHost(
     viewModel: OverviewViewModel = viewModel()
 ) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.Overview.route) {
+    NavHost(navController = navController, startDestination = Screen.Login.route) {
         composable(Screen.Overview.route) { OverViewScreen(navController, viewModel) }
         composable(Screen.NewTransaction.route) { NewTransactionScreen(navController) }
         composable(Screen.Login.route) { LoginScreen(navController) }
