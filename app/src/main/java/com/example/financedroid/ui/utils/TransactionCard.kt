@@ -23,11 +23,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.wear.compose.material.ContentAlpha
 
+
 @Composable
 fun TransactionCard(
-    uui: String,
+    uuid: String,
     category: String,
-    value: BigDecimal,
+    value: Double,
     date: String,
     deletar: () -> Unit,
 
@@ -42,40 +43,64 @@ fun TransactionCard(
 
         )
     ) {
-        TransactionInfoRow(deletar, uui, category,date, value)
+        TransactionInfoRow(
+            deletar = deletar,
+            uuid = uuid,
+            category = category,
+            date = date,
+            value = value.toBigDecimal()
+        )
     }
 }
 
 @Composable
-private fun TransactionInfoRow( deletar: () -> Unit, uui: String, category: String, date: String, value: BigDecimal) {
+private fun TransactionInfoRow(
+    deletar: () -> Unit,
+    uuid: String,
+    category: String,
+    date: String,
+    value: BigDecimal
+) {
     Column(Modifier.padding(16.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically
-        )
-        {
-            Icon(imageVector = (categories.firstOrNull {it.first == category }?.second ?: Icons.Default.Info),
-                contentDescription = "Food")
+        ) {
+            // Encontrar o ícone da categoria com base no nome
+            val categoryIcon = categoriesList.firstOrNull { it.name == category }?.icon
+                ?: Icons.Filled.Info  // Usar um ícone padrão caso não encontre a categoria
+
+            // Exibir o ícone da categoria
+            Icon(
+                imageVector = categoryIcon,
+                contentDescription = category
+            )
             Spacer(modifier = Modifier.width(16.dp))
 
+            // Exibir o nome da categoria e a data
             Column(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(text = category, style = MaterialTheme.typography.titleMedium)
-                Text(text = date, style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = ContentAlpha.medium))
+                Text(
+                    text = date,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = ContentAlpha.medium)
+                )
             }
+
             Spacer(modifier = Modifier.width(16.dp))
 
-            Text(text = value.toCurrency(),
+            // Exibir o valor da transação
+            Text(
+                text = value.toPlainString(),
                 style = MaterialTheme.typography.bodyLarge
             )
             Spacer(modifier = Modifier.padding(16.dp))
 
-            IconButton(onClick = {deletar }) {
-                Icon(imageVector = Icons.Filled.Delete, contentDescription = "Food", )
+            // Botão de deletar
+            IconButton(onClick = { deletar() }) {
+                Icon(imageVector = Icons.Filled.Delete, contentDescription = "Delete")
             }
-
-
         }
     }
 }
@@ -84,9 +109,9 @@ private fun TransactionInfoRow( deletar: () -> Unit, uui: String, category: Stri
 @Composable
 fun TransactionCardPreview() {
     TransactionCard(
-        uui = "",
+        uuid = "",
         category = "Food",
-        value = BigDecimal.valueOf(10.00),
+        value = BigDecimal.valueOf(10.00).toDouble(),
         date = "set. 15",
         deletar = {}
     )

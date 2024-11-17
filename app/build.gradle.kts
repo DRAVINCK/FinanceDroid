@@ -61,6 +61,8 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.androidx.core.ktx)
@@ -77,6 +79,8 @@ dependencies {
     implementation(libs.androidx.room.common)
     implementation(libs.androidx.room.ktx)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.flow
 class LocalRepositoryTransaction(
     private val dao: TransactionDao
 ): IFinanceRepository {
-    override var _transactions: MutableList<Transaction>
+    var _transactions: MutableList<Transaction>
         get() = TODO("Not yet implemented")
         set(value) {}
 
@@ -29,8 +29,9 @@ class LocalRepositoryTransaction(
     }
 
     override suspend fun clearTransactions() {
-        TODO("Not yet implemented")
+        return dao.clearTransactions(list = listOf())
     }
+
 
     override suspend fun findTransaction(uuid: String): Transaction {
         return dao.findTransaction(uuid)

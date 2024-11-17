@@ -1,21 +1,26 @@
 package com.example.financedroid.ui.viewmodels
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.financedroid.data.repositories.DummyRepository
+
 import com.example.financedroid.data.models.Transaction
+import com.example.financedroid.data.repositories.DummyRepository
 import com.example.financedroid.data.repositories.IFinanceRepository
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
 
 class OverviewViewModel(
-    private val repository: IFinanceRepository
+    private val repository: IFinanceRepository = DummyRepository
 ) : ViewModel() {
+
+
 
     private val _transaction = MutableStateFlow<List<Transaction>>(emptyList())
     val transactions: StateFlow<List<Transaction>> get() = _transaction
@@ -26,63 +31,70 @@ class OverviewViewModel(
 
     init {
         viewModelScope.launch {
+            combine(transactions, filter){ transactions, filter ->
+                UiState(transactions = transactions)
+            }.collectLatest {
+                _uiState.value = it
+            }
+        }
+        viewModelScope.launch {
             repository.getTransactions().collectLatest { lista ->
                 _transaction.value = lista
             }
         }
     }
 
-    //funçao para add uma nova transação
-    suspend fun addTransaction(transaction: Transaction) {
-        repository.addTransaction(transaction)
-        updateUiState()
+    fun getTransactions() {
+        viewModelScope.launch {
+            repository.getTransactions().collectLatest { lista ->
+                _transaction.value = lista
+            }
+        }
     }
 
-    suspend fun clearTransactions() {
-        repository.clearTransactions()
-        updateUiState()
+    fun addTransaction(transaction: Transaction) {
+        viewModelScope.launch {
+            repository.addTransaction(transaction)
+        }
     }
 
-    suspend fun updateTransaction(transaction: Transaction) {
-        repository.updateTransaction(transaction)
-        updateUiState()
+
+
+    fun clearTransactions() {
+        viewModelScope.launch {
+            repository.clearTransactions()
+        }
     }
 
-    suspend fun deleteTransaction(uuid: String) {
-        repository.deleteTransaction(uuid)
-        updateUiState()
+    fun updateTransaction(transaction: Transaction) {
+        viewModelScope.launch {
+            repository.updateTransaction(transaction)
+        }
+    }
+
+    fun deleteTransaction(uuid: String) {
+        viewModelScope.launch {
+            repository.deleteTransaction(uuid)
+        }
     }
 
     suspend fun findTransaction(uuid: String) = repository.findTransaction(uuid)
 
     suspend fun filterByCategory(category: String) {
         filter.value = category
-        updateUiState()
     }
 
     suspend fun clearFilter() {
         filter.value = null
-        updateUiState()
     }
 
-    private suspend fun updateUiState(){
-        val transactionListSaved = repository.transactions
-        val transactions = if (filter.value != null){
-            transactionListSaved.filter { it.category == filter.value }
-        } else {
-            transactionListSaved
-        }
-        _uiState.value = uiState.value.copy(
-            transactions = transactions,
-            total = transactions.sumOf { it.value }
-        )
-    }
+
 
     data class UiState(
         val advice: String = "",
         val userName: String = "",
         val transactions: List<Transaction> = emptyList(),
-        val total: BigDecimal = transactions.sumOf { it.value }
+        val total: Double = transactions.sumOf { it.value }
 
     )
 

@@ -6,13 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.remember
 import com.example.financedroid.data.db.openDatabase
-import com.example.financedroid.data.repositories.DummyRepository
 import com.example.financedroid.data.repositories.IFinanceRepository
 import com.example.financedroid.data.repositories.LocalRepositoryTransaction
-import com.example.financedroid.data.repositories.RemoteRepositoryTransactio
-import com.example.financedroid.ui.theme.FinanceDroidTheme
+import com.example.financedroid.data.repositories.RemoteRepositoryTransaction
+import com.example.financedroid.ui.viewmodels.OverviewViewModel
 import com.example.financedroid.views.navegation.FinanceDroidNavHost
-import com.example.financedroid.views.screens.OverViewScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -27,9 +25,10 @@ class MainActivity : ComponentActivity() {
                 val dao = db.transactionDao()
                 repository = LocalRepositoryTransaction(dao)
             }else {
-                repository = RemoteRepositoryTransactio()
+                repository = RemoteRepositoryTransaction()
             }
-            FinanceDroidNavHost()
+            val viewModel = OverviewViewModel(repository)
+            FinanceDroidNavHost(viewModel)
 
         }
     }

@@ -11,10 +11,10 @@ data class Transaction(
     @PrimaryKey
     var uuid: String = UUID.randomUUID().toString(),
     var category: String= "",
-    var value: BigDecimal = BigDecimal.valueOf(0),
+    var value: Double = BigDecimal.valueOf(0).toDouble(),
     val date: Date = Date()
 ){
-    constructor(category: String, value: BigDecimal, date: Date) : this(
+    constructor(category: String, value: Double, date: Date) : this(
         uuid = UUID.randomUUID().toString(),
         category = category,
         value = value,

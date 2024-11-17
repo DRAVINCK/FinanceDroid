@@ -17,4 +17,6 @@ interface TransactionDao {
 
     suspend fun deleteTransaction(uuid: String)
 
+    suspend fun clearTransactions(list: List<Transaction>)
+
 }

@@ -15,12 +15,14 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import com.example.financedroid.ui.viewmodels.OverviewViewModel
 import com.example.financedroid.ui.utils.TransactionCard
 import com.example.financedroid.ui.utils.formatDate
@@ -35,6 +37,12 @@ fun TransactionScreen(
     viewModel: OverviewViewModel
 ) {
 
+
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getTransactions() // Chamar uma função no ViewModel para iniciar a coleta do fluxo
+    }
+
     Column(modifier = Modifier.padding(it)) {
         Row (verticalAlignment = Alignment.CenterVertically) {
             Text(
@@ -43,7 +51,9 @@ fun TransactionScreen(
                 text = "Transações",
 
             )
-            IconButton(onClick = { viewModel.clearTransactions() }) {
+            IconButton(onClick = {
+             viewModel.clearTransactions()}
+            ) {
                 Icon(
                     imageVector = Icons.Filled.Clear,
                     contentDescription = "Limpar Transações",
@@ -66,7 +76,7 @@ fun TransactionScreen(
         ) {
             items(uiState.transactions) { transaction ->
                 TransactionCard(
-                    uui = transaction.uuid,
+                    uuid = transaction.uuid,
                     category = transaction.category,
                     value = transaction.value,
                     date = transaction.date.formatDate(),

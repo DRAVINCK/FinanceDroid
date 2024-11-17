@@ -91,7 +91,7 @@ fun TotalInfoColumn(
 fun TotalnCardPreview() {
     TotalCard(
         titulo = "teste titulo",
-        value = BigDecimal.valueOf(10.00).toCurrency()
+        value = BigDecimal.valueOf(10.00).toDouble().toCurrency()
     )
 }
 

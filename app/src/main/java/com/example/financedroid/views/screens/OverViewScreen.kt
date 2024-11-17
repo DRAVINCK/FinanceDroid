@@ -13,7 +13,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,13 +20,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.financedroid.ui.utils.TopbarAItip
 import com.example.financedroid.ui.utils.TopbarInicial
-import com.example.financedroid.ui.utils.randomTransaction
 import androidx.compose.material3.Icon
-import androidx.navigation.NavController
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.financedroid.ui.viewmodels.OverviewViewModel
 import com.example.financedroid.ui.utils.TopbarInfoValues
+
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -36,7 +35,7 @@ fun OverViewScreen(
     navController: NavHostController,
     viewModel: OverviewViewModel = viewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    var selectedItem by remember { mutableStateOf(0) }
+    var selectedItem by remember { mutableIntStateOf(0) }
 
     Scaffold(
         topBar = {
@@ -51,7 +50,7 @@ fun OverViewScreen(
         floatingActionButton = {
             if (selectedItem == 0) {
                 FloatingActionButton(onClick = {
-                    viewModel.addTransaction(randomTransaction())
+                    navController.navigate(Screen.NewTransaction.route)
                 }) {
                     Icon(
                         imageVector = Icons.Filled.Add,

@@ -1,34 +1,44 @@
 package com.example.financedroid.data.repositories
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.financedroid.data.models.Transaction
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-object DummyRepository {
+object DummyRepository : IFinanceRepository {
 
-    private var _transactions = mutableListOf<Transaction>()
+     var _transactions = mutableListOf<Transaction>()
 
-    val transactions get() = _transactions.toList()
+     val transactions get() = _transactions.toList()
+    override fun getTransactions(): Flow<List<Transaction>> {
+        return flow {
+            emit(transactions) // Emite a lista de transações
+        }
+    }
 
-    fun addTransaction(transaction: Transaction) {
+    override suspend fun addTransaction(transaction: Transaction) {
         _transactions.add(transaction)
     }
 
-    fun deleteTransaction(uuid: String) {
+    override suspend fun deleteTransaction(uuid: String) {
         _transactions.removeIf {
             uuid == it.uuid
         }
     }
 
-    fun updateTransaction(transaction: Transaction) {
+    override suspend fun updateTransaction(transaction: Transaction) {
         deleteTransaction(transaction.uuid)
         _transactions.add(transaction)
     }
 
-    fun clearTransactions() {
+    override suspend fun clearTransactions() {
         _transactions.clear()
 
     }
 
-    fun findTransaction(uuid: String): Transaction {
+
+    override suspend fun findTransaction(uuid: String): Transaction {
         return transactions.firstOrNull{ it.uuid == uuid} ?: Transaction()
     }
 

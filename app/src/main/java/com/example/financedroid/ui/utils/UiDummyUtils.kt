@@ -25,12 +25,12 @@ fun Date.formatDate(): String {
 }
 
 
-fun BigDecimal.toCurrency(): String {
+fun Double.toCurrency(): String {
     val numberFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())
     return numberFormat.format(this)
 }
 
-val categories = listOf(
+val categoriees = listOf(
     "Comida" to Icons.Default.FavoriteBorder,
     "Transporte" to Icons.Default.Build,
     "Shopping" to Icons.Default.ShoppingCart,
@@ -42,8 +42,8 @@ val categories = listOf(
 
 
 fun randomTransaction() = Transaction(
-    category = categories.random().first,
-    value = BigDecimal.valueOf( Random.nextDouble() / Random.nextDouble())
+    category = categoriesList.random().name,
+    value = BigDecimal.valueOf( Random.nextDouble() / Random.nextDouble()).toDouble()
 )
 
 fun RandomInvestmentTip(): InvestmentTip {
